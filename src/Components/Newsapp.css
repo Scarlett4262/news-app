@@ -1,0 +1,116 @@
+/* From Uiverse.io by joe-watson-sbf */
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.search__input {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: #f4f2f2;
+  border: none;
+  color: #9f9f9f;
+  padding: 0.7rem 1rem;
+  border-radius: 30px;
+  width: 12em;
+  transition: all ease-in-out 0.5s;
+  margin-right: -2rem;
+}
+
+.search__input:hover,
+.search__input:focus {
+  box-shadow: 0 0 1em #00000013;
+}
+
+.search__input:focus {
+  outline: none;
+  background-color: #f0eeee;
+}
+
+.search__input::-webkit-input-placeholder {
+  font-weight: 100;
+  color: #ccc;
+}
+
+.search__button {
+  border: 2px solid;
+  background-color: #333;
+  margin-top: 0.1em;
+  border-radius: 15px;
+  margin-left: -10px;
+}
+
+.search__button:hover {
+  cursor: pointer;
+  background-color: #212121;
+}
+
+.search__icon {
+  height: 1.3em;
+  width: 1.3em;
+  font-size: larger;
+  fill: #b4b4b4;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px); /* Adjust as needed for your layout */
+}
+
+.loader div {
+  position: relative; /* Changed to relative for proper alignment */
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: #c517f0;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.loader div:nth-child(1) {
+  animation: flip1 0.6s infinite;
+}
+
+.loader div:nth-child(2) {
+  animation: flip2 0.6s infinite;
+}
+
+.loader div:nth-child(3) {
+  animation: flip2 0.6s infinite;
+}
+
+.loader div:nth-child(4) {
+  animation: flip3 0.6s infinite;
+}
+
+@keyframes flip1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flip3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes flip2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(24px, 0);
+  }
+}
