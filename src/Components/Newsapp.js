@@ -65,12 +65,12 @@ const Newsapp = () => {
             placeholder="Search News"
             value={search}
             onChange={handleInput}
-            disabled={loading}  // Disable input while loading
+            disabled={loading} // Disable input while loading
           />
           <button
             className="search__button"
             onClick={getData}
-            disabled={loading}  // Disable button while loading
+            disabled={loading} // Disable button while loading
           >
             <svg
               className="search__icon"
