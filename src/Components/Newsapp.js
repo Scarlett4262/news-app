@@ -9,11 +9,13 @@ const Newsapp = () => {
   const [loading, setLoading] = useState(false);
   const API_KEY = "37f3f6d54afd49788a71f76778a92fa2";
 
+  // Function to fetch news data
   const getData = async () => {
     if (!search.trim()) {
-      setError("Please enter a query");
+      setError("Please enter a search query");
       return;
     }
+
     setError("");
     setLoading(true);
 
@@ -22,8 +24,14 @@ const Newsapp = () => {
         `https://newsapi.org/v2/everything?q=${search}&apiKey=${API_KEY}`
       );
       const jsonData = await response.json();
-      let dt = jsonData.articles.slice(0, 10);
-      setNewsData(dt);
+
+      // If the response contains articles
+      if (jsonData.articles && jsonData.articles.length > 0) {
+        let dt = jsonData.articles.slice(0, 10); // Limit to 10 articles
+        setNewsData(dt);
+      } else {
+        setError("No news articles found. Try another query.");
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
       setError("Failed to fetch news. Please try again later.");
@@ -32,16 +40,19 @@ const Newsapp = () => {
     }
   };
 
+  // Fetch data on first render
   useEffect(() => {
     getData();
   }, []);
 
+  // Handle input change for the search query
   const handleInput = (e) => {
     setSearch(e.target.value);
   };
 
   return (
     <div>
+      {/* Navigation bar */}
       <nav>
         <div>
           <h1>News</h1>
@@ -54,8 +65,13 @@ const Newsapp = () => {
             placeholder="Search News"
             value={search}
             onChange={handleInput}
+            disabled={loading}  // Disable input while loading
           />
-          <button className="search__button" onClick={getData}>
+          <button
+            className="search__button"
+            onClick={getData}
+            disabled={loading}  // Disable button while loading
+          >
             <svg
               className="search__icon"
               aria-hidden="true"
@@ -69,8 +85,10 @@ const Newsapp = () => {
         </div>
       </nav>
 
+      {/* Display error if any */}
       {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
+      {/* Loader */}
       {loading ? (
         <div className="loader">
           <div></div>
@@ -84,6 +102,7 @@ const Newsapp = () => {
             <p className="head">Stay Updated with Latest News</p>
           </div>
 
+          {/* Display news cards if available */}
           <div>{newsData ? <Card data={newsData} /> : null}</div>
         </>
       )}
