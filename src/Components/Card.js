@@ -7,7 +7,7 @@ const Card = ({ data }) => {
   };
 
   return (
-    <div className="cardContainer">
+    <div className="cardContainer news-card-grid">
       {data.map((curItem, index) => {
         if (!curItem.urlToImage) {
           return null;
@@ -31,7 +31,7 @@ const Card = ({ data }) => {
                 <button
                   className="button"
                   onClick={() => readMore(curItem.url)}
-                  style={{ "--clr": "#7808d0" }}
+                  style={{ "--clr": "var(--accent)" }}
                 >
                   <span className="button__icon-wrapper">
                     <svg
