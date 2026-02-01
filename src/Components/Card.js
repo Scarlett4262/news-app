@@ -24,7 +24,12 @@ const Card = ({ data }) => {
                   {new Date(curItem.publishedAt).toLocaleDateString()}
                 </div>
                 <div className="heading">
-                  <a className="title" onClick={() => window.open(curItem.url)}>
+                  <a
+                    className="title"
+                    href={curItem.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {curItem.title}
                   </a>
                 </div>

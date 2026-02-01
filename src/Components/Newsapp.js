@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Card from "./Card";
 import "./Newsapp.css";
 
@@ -21,7 +21,7 @@ const Newsapp = () => {
   const [loading, setLoading] = useState(false);
   const API_KEY = "9c275a54dbc84836a2edacbc50f24c19";
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     setError("");
     setLoading(true);
 
@@ -62,11 +62,11 @@ const Newsapp = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [category, search]);
 
   useEffect(() => {
     getData();
-  }, [category]);
+  }, [getData]);
 
   const handleInput = (e) => {
     setSearch(e.target.value);
